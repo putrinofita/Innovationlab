@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: rgb(247, 237, 237);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+main {
+    z-index: 1;
+}
+
+.profile-card {
+    width: 320px;
+    background: rgb(230, 227, 221);
+    background-image: url(../../img/bgid.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card figure {
+    margin: 0;
+}
+
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #f3f1e4;
+    object-fit: cover;
+}
+
+.profile-card h2 {
+    font-size: 22px;
+    margin: 15px 0 5px;
+    color: #434028;
+    font-weight: 900;
+}
+
+.profile-card h3 {
+    font-size: 16px;
+    color: #595848;
+    margin-bottom: 15px;
+}
+
+.profile-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 20px;
+    padding: 0 10px;
+    font-weight: 500;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #353417;
+    font-size: 20px;
+    background: #e9e9e3;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    background: #27220e;
+    color: #e9e9e3;
+}

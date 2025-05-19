@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueWave</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .flex::-webkit-scrollbar {
+        display: none;
+        }
+        .flex {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        }
+    </style>
+  </head>
+  <body class="bg-sky-50 text-slate-800">
+    <!-- Header -->
+    <header class="bg-teal-700 text-blue p-6 shadow-md">
+    <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between">
+        <h1 class="text-3xl font-bold">BlueWave</h1>
+        <nav class="mt-4 sm:mt-0 space-x-4 text-sm sm:text-base">
+        <a href="#beranda" class="hover:underline transition">Beranda</a>
+        <a href="#tentang" class="hover:underline transition">Tentang</a>
+        <a href="#ekosistem" class="hover:underline transition">Ekosistem Laut</a>
+        <a href="#ancaman" class="hover:underline transition">Ancaman</a>
+        <a href="#aksi" class="hover:underline transition">Aksi Kami</a>
+        <a href="#kontak" class="hover:underline transition">Kontak</a>
+        </nav>
+    </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-72 sm:h-96" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');">
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold text-white">Selamat Datang di BlueWave</h2>
+        <p class="mt-2 text-lg text-white">Melalui edukasi dan aksi nyata, BlueWave hadir sebagai penggerak perubahan positif bagi laut Indonesia.</p>
+        <a href="#aksi" class="mt-6 inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition">Gabung Bersama Kami</a>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-12">
+      <section id="beranda">
+        <h2 class="text-2xl font-semibold text-teal-700">BlueWave</h2>
+        <p class="mt-2">Kami peduli terhadap masa depan laut kita. Edukasi dan aksi nyata untuk melindungi ekosistem laut Indonesia.</p>
+      </section>
+
+      <section id="tentang">
+        <h2 class="text-2xl font-semibold text-teal-700">Tentang BlueWave</h2>
+        <p class="mt-2">BlueWave adalah komunitas peduli lingkungan yang fokus pada pelestarian ekosistem laut melalui berbagai program edukasi, konservasi, dan pemberdayaan masyarakat pesisir.</p>
+      </section>
+
+<section id="ekosistem">
+  <h2 class="text-2xl font-semibold text-teal-700 mb-4">Apa Itu Ekosistem Laut?</h2>
+  <div class="flex space-x-6 overflow-x-auto pb-4">
+    <div class="bg-white rounded-lg shadow overflow-hidden w-48 flex-shrink-0">
+      <img src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Terumbu Karang" class="w-full h-40 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-teal-600">Terumbu Karang</h3>
+        <p class="text-sm mt-2">Habitat penting bagi ribuan spesies laut. Rentan terhadap pemutihan akibat pemanasan global.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-hidden w-48 flex-shrink-0">
+      <img src="https://images.unsplash.com/photo-1612971432130-04d239cb6706?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hutan Bakau" class="w-full h-40 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-teal-600">Hutan Bakau</h3>
+        <p class="text-sm mt-2">Berfungsi sebagai pelindung pantai dan penyaring alami air laut dari limbah.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-hidden w-48 flex-shrink-0">
+      <img src="https://media.istockphoto.com/id/2191294331/photo/a-seagrass-meadow-under-the-mediterranean-sun.webp?a=1&b=1&s=612x612&w=0&k=20&c=5dhuYi2hplwKi93g5_Sl-pBdXw-AxhpTbjN55COmj-I=" alt="Padang Lamun" class="w-full h-40 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-teal-600">Padang Lamun</h3>
+        <p class="text-sm mt-2">Tempat mencari makan bagi dugong dan penyu. Menyerap karbon dalam jumlah besar.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-hidden w-48 flex-shrink-0">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Laut Terbuka" class="w-full h-40 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-teal-600">Laut Terbuka</h3>
+        <p class="text-sm mt-2">Wilayah luas dan dalam yang menjadi rumah bagi spesies besar seperti paus dan tuna.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-hidden w-48 flex-shrink-0">
+      <img src="https://images.unsplash.com/photo-1655500025272-5e9246e62716?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c21hbGwlMjBpc2xhbmQlMjBlY29zeXN0ZW18ZW58MHx8MHx8fDA%3D" alt="Ekosistem Pulau Kecil" class="w-full h-40 object-cover" />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-teal-600">Ekosistem Pulau Kecil</h3>
+        <p class="text-sm mt-2">Penting bagi keanekaragaman hayati dan keseimbangan ekonomi masyarakat pesisir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <section id="ancaman">
+        <h2 class="text-2xl font-semibold text-teal-700">Ancaman terhadap Ekosistem Laut</h2>
+        <ul class="list-disc list-inside mt-2 space-y-1">
+          <li>Polusi plastik dan limbah industri</li>
+          <li>Penangkapan ikan berlebihan</li>
+          <li>Perubahan iklim dan pemanasan laut</li>
+        </ul>
+      </section>
+
+    <section id="aksi">
+        <h2 class="text-2xl font-semibold text-teal-700">Aksi Kami</h2>
+        <p class="mt-2">Sebagai bagian dari komitmen kami, BlueWave rutin mengadakan:</p>
+        <ul class="list-disc list-inside mt-2 space-y-1">
+            <li>Kampanye bersih pantai dan laut</li>
+            <li>Edukasi lingkungan di sekolah dan komunitas lokal</li>
+            <li>Pelatihan pengelolaan sampah ramah lingkungan</li>
+        </ul>
+        <p class="mt-4">Bersama, kita bisa menciptakan laut yang lebih bersih dan sehat untuk generasi mendatang.</p>
+        <a href="#kontak" class="mt-4 inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition">Hubungi Kami</a>
+    </section>
+
+    <section id="peta" class="mt-12">
+    <h2 class="text-2xl font-semibold text-teal-700 mb-4">Peta Pantai Interaktif</h2>
+    <div id="map" class="w-full h-96 rounded-lg shadow"></div>
+    </section>
+
+    <script>
+    var map = L.map('map').setView([-6.1108, 106.8283], 13); // Lokasi awal (Pantai Ancol)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([-6.1108, 106.8283]).addTo(map)
+        .bindPopup('Pantai Ancol')
+        .openPopup();
+    </script>
+
+
+    <section id="kontak">
+        <h2 class="text-2xl font-semibold text-teal-700">Kontak</h2>
+        <p class="mt-2">Ingin tahu lebih banyak atau ingin berkontribusi bersama kami? Hubungi kami melalui:</p>
+        <p class="mt-1">📧 Email: <a href="mailto:bluewave@gmail.com" class="text-teal-700 hover:underline">bluewave@gmail.com</a></p>
+        <p>📸 Instagram: <a href="https://instagram.com/bluewave" target="_blank" class="text-teal-700 hover:underline">@bluewave</a></p>
+        <form class="mt-6 space-y-4 max-w-md">
+            <input type="text" placeholder="Nama" class="w-full border border-gray-300 rounded p-2" />
+            <input type="email" placeholder="Email" class="w-full border border-gray-300 rounded p-2" />
+            <textarea rows="4" placeholder="Pesan" class="w-full border border-gray-300 rounded p-2"></textarea>
+            <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">Kirim</button>
+        </form>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-teal-800 text-white text-center p-4">
+      <p>&copy; 2025 GDGS. Semua hak dilindungi.</p>
+    </footer>
+  </body>
+</html>

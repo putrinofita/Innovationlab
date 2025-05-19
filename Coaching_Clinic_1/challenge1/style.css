@@ -1,0 +1,117 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('../../img/bg.jpg') no-repeat center center/cover;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: transparent;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #66ccff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #66ccff;
+    }
+
+    main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding-top: 60px;
+    }
+
+    .hero {
+      display: flex;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      max-width: 1000px;
+    }
+
+    .hero img {
+      width: 250px;
+      height: auto;
+      border-radius: 15px;
+      margin-right: 40px;
+      box-shadow: 0 0 20px #66ccff;
+    }
+
+    .hero-text h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero-text h3 {
+      font-size: 28px;
+      color: #66ccff;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      text-align: justify;
+      font-size: 16px;
+      margin-bottom: 20px;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .social-links a {
+      margin-right: 15px;
+      font-size: 20px;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #66ccff;
+    }
+
+    .hire-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: 2px solid #66ccff;
+      background: transparent;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .hire-btn:hover {
+      background: #66ccff;
+      color: black;
+    }

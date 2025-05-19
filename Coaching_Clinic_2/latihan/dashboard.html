@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - WebGIS SDGs Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50 flex">
+
+  <!-- Sidebar -->
+  <aside class="w-72 bg-white shadow-lg flex flex-col p-6 space-y-6">
+    <h2 class="text-2xl font-extrabold text-emerald-800 flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 6h18M4 14h16M5 18h14" />
+      </svg>
+      Categories
+    </h2>
+    <div class="flex flex-col space-y-3 text-gray-700">
+      <label class="flex items-center gap-3 cursor-pointer hover:text-emerald-600 transition">
+        <input type="checkbox" class="accent-emerald-600 w-5 h-5" />
+        <span class="font-medium text-lg">Education</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:text-emerald-600 transition">
+        <input type="checkbox" class="accent-emerald-600 w-5 h-5" />
+        <span class="font-medium text-lg">Health</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:text-emerald-600 transition">
+        <input type="checkbox" class="accent-emerald-600 w-5 h-5" />
+        <span class="font-medium text-lg">Environment</span>
+      </label>
+    </div>
+
+    <!-- Spacer supaya Logout di bawah -->
+    <div class="flex-grow"></div>
+
+    <a href="login.html" class="bg-red-100 text-red-700 text-center py-3 rounded-md font-semibold hover:bg-red-200 transition">
+      Logout
+    </a>
+  </aside>
+
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-md px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+      <h1 class="text-2xl font-bold text-emerald-800">Dashboard</h1>
+      <div class="flex items-center space-x-4">
+        <input
+          type="search"
+          placeholder="Search location..."
+          class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        />
+        <div class="flex items-center gap-2 cursor-pointer">
+          <img src="https://i.pravatar.cc/40" alt="User Avatar" class="rounded-full w-10 h-10 border-2 border-emerald-600" />
+          <span class="font-medium text-gray-700">Admin</span>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Content -->
+    <main class="flex-grow p-8 overflow-auto">
+      <div class="flex flex-col md:flex-row gap-8">
+
+        <!-- Map -->
+        <div class="flex-1 rounded-lg overflow-hidden shadow-lg border border-gray-300">
+          <div id="map" class="w-full h-[550px]"></div>
+        </div>
+
+        <!-- Detail Lokasi -->
+        <div class="w-full md:w-96 bg-white rounded-lg shadow-lg p-6 border border-gray-300">
+          <h2 class="text-xl font-semibold text-emerald-700 mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 12.414a4 4 0 10-5.656 5.656l4.243 4.243a8 8 0 1111.314-11.314l-1.414 1.414" />
+            </svg>
+            Location Details
+          </h2>
+          <div class="space-y-3 text-gray-700 text-sm">
+            <p><strong>Name:</strong> Universitas Nurul Jadid</p>
+            <p><strong>Category:</strong> Education</p>
+            <p><strong>Progress SDGs:</strong> 90%</p>
+            <p><strong>Description:</strong> A leading university focused on sustainable development and community empowerment.</p>
+            <button
+              class="mt-4 w-full bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition font-semibold"
+              onclick="alert('More details coming soon!')"
+            >
+              More Info
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const map = L.map('map').setView([-7.7264, 113.5113], 17); // Universitas Nurul Jadid
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([-7.7264, 113.5113])
+      .addTo(map)
+      .bindPopup("Universitas Nurul Jadid")
+      .openPopup();
+  </script>
+</body>
+</html>
