@@ -1,0 +1,93 @@
+-- Script SQL untuk membuat database BlueWave
+-- Jalankan script ini di phpMyAdmin
+
+-- Tabel untuk data pengguna
+CREATE TABLE pengguna (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nomor_telepon VARCHAR(20),
+    tanggal_daftar DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status_aktif TINYINT(1) DEFAULT 1
+);
+
+-- Tabel untuk data ekosistem laut
+CREATE TABLE ekosistem_laut (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    gambar_url VARCHAR(255),
+    urutan INT DEFAULT 0,
+    status_aktif TINYINT(1) DEFAULT 1
+);
+
+-- Tabel untuk data ancaman lingkungan
+CREATE TABLE ancaman_lingkungan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    gambar_url VARCHAR(255),
+    tingkat_ancaman ENUM('rendah', 'sedang', 'tinggi', 'sangat_tinggi') DEFAULT 'sedang',
+    status_aktif TINYINT(1) DEFAULT 1
+);
+
+-- Tabel untuk pesan kontak
+CREATE TABLE pesan_kontak (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    pesan TEXT NOT NULL,
+    tanggal_kirim DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status_baca TINYINT(1) DEFAULT 0
+);
+
+-- Tabel untuk program atau kegiatan BlueWave
+CREATE TABLE program_kegiatan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul VARCHAR(200) NOT NULL,
+    deskripsi TEXT NOT NULL,
+    tanggal_mulai DATE,
+    tanggal_selesai DATE,
+    lokasi VARCHAR(200),
+    max_peserta INT DEFAULT 0,
+    gambar_url VARCHAR(255),
+    status ENUM('draft', 'aktif', 'selesai', 'dibatalkan') DEFAULT 'draft'
+);
+
+-- Tabel untuk pendaftaran peserta program
+CREATE TABLE pendaftaran_program (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    program_id INT,
+    pengguna_id INT,
+    tanggal_daftar DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('menunggu', 'diterima', 'ditolak') DEFAULT 'menunggu',
+    FOREIGN KEY (program_id) REFERENCES program_kegiatan(id) ON DELETE CASCADE,
+    FOREIGN KEY (pengguna_id) REFERENCES pengguna(id) ON DELETE CASCADE
+);
+
+-- Insert data contoh untuk ekosistem laut
+INSERT INTO ekosistem_laut (nama, deskripsi, gambar_url, urutan) VALUES
+('Terumbu Karang', 'Habitat penting bagi ribuan spesies laut. Rentan terhadap pemutihan akibat pemanasan global.', 'https://images.unsplash.com/photo-1546026423-cc4642628d2b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1),
+('Hutan Bakau', 'Berfungsi sebagai pelindung pantai dan penyaring alami air laut dari limbah.', 'https://images.unsplash.com/photo-1612971432130-04d239cb6706?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 2),
+('Padang Lamun', 'Tempat mencari makan bagi dugong dan penyu. Menyerap karbon dalam jumlah besar.', 'https://media.istockphoto.com/id/2191294331/photo/a-seagrass-meadow-under-the-mediterranean-sun.webp?a=1&b=1&s=612x612&w=0&k=20&c=5dhuYi2hplwKi93g5_Sl-pBdXw-AxhpTbjN55COmj-I=', 3),
+('Laut Terbuka', 'Wilayah luas dan dalam yang menjadi rumah bagi spesies besar seperti paus dan tuna.', 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 4),
+('Ekosistem Pulau Kecil', 'Penting bagi keanekaragaman hayati dan keseimbangan ekonomi masyarakat pesisir.', 'https://images.unsplash.com/photo-1655500025272-5e9246e62716?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c21hbGwlMjBpc2xhbmQlMjBlY29zeXN0ZW18ZW58MHx8MHx8fDA%3D', 5);
+
+-- Insert data contoh untuk ancaman lingkungan
+INSERT INTO ancaman_lingkungan (nama, deskripsi, gambar_url, tingkat_ancaman) VALUES
+('Pencemaran Laut', 'Sampah plastik dan limbah industri mencemari laut dan membahayakan ekosistem laut.', 'https://source.unsplash.com/300x200/?ocean,pollution', 'sangat_tinggi'),
+('Perubahan Iklim', 'Perubahan suhu dan cuaca ekstrem berdampak pada kehidupan manusia dan lingkungan.', 'https://source.unsplash.com/300x200/?climate,change', 'sangat_tinggi'),
+('Penangkapan Ikan Ilegal', 'Penangkapan ikan ilegal merusak ekosistem laut dan mengancam kelestarian spesies.', 'https://source.unsplash.com/300x200/?fishing,boat', 'tinggi'),
+('Deforestasi', 'Pembukaan lahan dan pembalakan liar mengancam keberadaan hutan tropis Indonesia.', 'https://source.unsplash.com/300x200/?deforestation', 'tinggi'),
+('Krisis Air Bersih', 'Banyak daerah di Indonesia kesulitan mengakses air bersih yang aman dan layak.', 'https://source.unsplash.com/300x200/?water,crisis', 'sedang');
+
+-- Insert data contoh program kegiatan
+INSERT INTO program_kegiatan (judul, deskripsi, tanggal_mulai, tanggal_selesai, lokasi, max_peserta, status) VALUES
+('Bersih Pantai Ancol', 'Program pembersihan pantai dan edukasi lingkungan untuk masyarakat umum', '2025-06-15', '2025-06-15', 'Pantai Ancol, Jakarta', 100, 'aktif'),
+('Workshop Daur Ulang Plastik', 'Pelatihan cara mendaur ulang sampah plastik menjadi produk berguna', '2025-07-01', '2025-07-03', 'Gedung Serbaguna BlueWave', 50, 'aktif'),
+('Edukasi Sekolah: Cinta Laut', 'Program edukasi tentang pentingnya menjaga ekosistem laut untuk siswa sekolah', '2025-06-20', '2025-06-25', 'Berbagai sekolah di Jakarta', 500, 'aktif');
+
+-- Insert data admin default (password: admin123)
+INSERT INTO pengguna (nama, email, password, nomor_telepon) VALUES
+('Administrator', 'admin@bluewave.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '081234567890');
